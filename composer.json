@@ -1,7 +1,7 @@
 {
     "name": "detain/myadmin-googlewallet-payments",
     "type": "myadmin-plugin",
-    "description": "GoogleWallet handling plugin for MyAdmin",
+    "description": "Googlewallet handling plugin for MyAdmin",
     "keywords": ["abuse","administration","spam"],
     "license": "LGPL-2.1",
     "authors": [
@@ -28,6 +28,6 @@
 		"codacy/coverage": "dev-master"
 	},
     "autoload": {
-        "psr-4": {"Detain\\MyAdminGoogleWallet\\": "src/"}
+        "psr-4": {"Detain\\MyAdminGooglewallet\\": "src/"}
     }
 }

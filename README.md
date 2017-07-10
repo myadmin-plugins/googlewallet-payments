@@ -1,6 +1,6 @@
-# GoogleWallet handling plugin for MyAdmin
+# Googlewallet handling plugin for MyAdmin
 
-GoogleWallet handling plugin for MyAdmin
+Googlewallet handling plugin for MyAdmin
 
 ## Build Status and Code Analysis
 
@@ -24,5 +24,5 @@ composer require detain/myadmin-googlewallet-payments
 
 ## License
 
-The GoogleWallet handling plugin for MyAdmin class is licensed under the LGPL-v2 license.
+The Googlewallet handling plugin for MyAdmin class is licensed under the LGPL-v2 license.
 
