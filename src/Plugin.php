@@ -17,7 +17,7 @@ class Plugin {
 
 	public static function getHooks() {
 		return [
-			//'system.settings' => [__CLASS__, 'getSettings'],
+			'system.settings' => [__CLASS__, 'getSettings'],
 			//'ui.menu' => [__CLASS__, 'getMenu'],
 		];
 	}
@@ -41,8 +41,12 @@ class Plugin {
 
 	public static function getSettings(GenericEvent $event) {
 		$settings = $event->getSubject();
-		$settings->add_text_setting('General', 'Googlewallet', 'abuse_imap_user', 'Googlewallet IMAP User:', 'Googlewallet IMAP Username', ABUSE_IMAP_USER);
-		$settings->add_text_setting('General', 'Googlewallet', 'abuse_imap_pass', 'Googlewallet IMAP Pass:', 'Googlewallet IMAP Password', ABUSE_IMAP_PASS);
+		$settings->add_radio_setting('Billing', 'Google Wallet', 'google_wallet_enabled', 'Enable Google Wallet', 'Enable Google Wallet', GOOGLE_WALLET_ENABLED, [true, false], ['Enabled', 'Disabled']);
+		$settings->add_dropdown_setting('Billing', 'Google Wallet', 'google_wallet_sandbox', 'Use Sandbox/Test Environment', 'Use Sandbox/Test Environment', GOOGLE_WALLET_SANDBOX, [false, true], ['Live Environment', 'Sandbox Test Environment']);
+		$settings->add_text_setting('Billing', 'Google Wallet', 'google_wallet_seller_id', 'Live Merchant ID', 'Live Merchant ID', (defined('GOOGLE_WALLET_SELLER_ID') ? GOOGLE_WALLET_SELLER_ID : ''));
+		$settings->add_text_setting('Billing', 'Google Wallet', 'google_wallet_seller_secret', 'Live Merchant Key', 'Live Merchant Key', (defined('GOOGLE_WALLET_SELLER_SECRET') ? GOOGLE_WALLET_SELLER_SECRET : ''));
+		$settings->add_text_setting('Billing', 'Google Wallet', 'google_wallet_sandbox_seller_id', 'Sandbox Merchant ID', 'Sandbox Merchant ID', (defined('GOOGLE_WALLET_SANDBOX_SELLER_ID') ? GOOGLE_WALLET_SANDBOX_SELLER_ID : ''));
+		$settings->add_text_setting('Billing', 'Google Wallet', 'google_wallet_sandbox_seller_secret', 'Sandbox Merchant Key', 'Sandbox Merchant Key', (defined('GOOGLE_WALLET_SANDBOX_SELLER_SECRET') ? GOOGLE_WALLET_SANDBOX_SELLER_SECRET : ''));
 	}
 
 }
