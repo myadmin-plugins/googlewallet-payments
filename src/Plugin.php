@@ -60,8 +60,8 @@ class Plugin {
 	 */
 	public static function getSettings(GenericEvent $event) {
 		$settings = $event->getSubject();
-		$settings->add_radio_setting('Billing', 'Google Wallet', 'google_wallet_enabled', 'Enable Google Wallet', 'Enable Google Wallet', GOOGLE_WALLET_ENABLED, [true, false], ['Enabled', 'Disabled']);
-		$settings->add_dropdown_setting('Billing', 'Google Wallet', 'google_wallet_sandbox', 'Use Sandbox/Test Environment', 'Use Sandbox/Test Environment', GOOGLE_WALLET_SANDBOX, [false, true], ['Live Environment', 'Sandbox Test Environment']);
+		$settings->add_radio_setting('Billing', 'Google Wallet', 'google_wallet_enabled', 'Enable Google Wallet', 'Enable Google Wallet', GOOGLE_WALLET_ENABLED, [TRUE, FALSE], ['Enabled', 'Disabled']);
+		$settings->add_dropdown_setting('Billing', 'Google Wallet', 'google_wallet_sandbox', 'Use Sandbox/Test Environment', 'Use Sandbox/Test Environment', GOOGLE_WALLET_SANDBOX, [FALSE, TRUE], ['Live Environment', 'Sandbox Test Environment']);
 		$settings->add_text_setting('Billing', 'Google Wallet', 'google_wallet_seller_id', 'Live Merchant ID', 'Live Merchant ID', (defined('GOOGLE_WALLET_SELLER_ID') ? GOOGLE_WALLET_SELLER_ID : ''));
 		$settings->add_text_setting('Billing', 'Google Wallet', 'google_wallet_seller_secret', 'Live Merchant Key', 'Live Merchant Key', (defined('GOOGLE_WALLET_SELLER_SECRET') ? GOOGLE_WALLET_SELLER_SECRET : ''));
 		$settings->add_text_setting('Billing', 'Google Wallet', 'google_wallet_sandbox_seller_id', 'Sandbox Merchant ID', 'Sandbox Merchant ID', (defined('GOOGLE_WALLET_SANDBOX_SELLER_ID') ? GOOGLE_WALLET_SANDBOX_SELLER_ID : ''));
