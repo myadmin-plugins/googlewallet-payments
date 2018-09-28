@@ -1,5 +1,5 @@
 {
-	"name": "detain/googlewallet-payments",
+	"name": "detain/myadmin-googlewallet-payments",
 	"type": "myadmin-plugin",
 	"description": "Googlewallet handling plugin for MyAdmin",
 	"keywords": [
