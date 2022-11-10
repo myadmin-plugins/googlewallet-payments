@@ -74,8 +74,8 @@ class Plugin
         $settings->add_radio_setting(_('Billing'), _('Google Wallet'), 'google_wallet_enabled', _('Enable Google Wallet'), _('Enable Google Wallet'), GOOGLE_WALLET_ENABLED, [true, false], ['Enabled', 'Disabled']);
         $settings->add_dropdown_setting(_('Billing'), _('Google Wallet'), 'google_wallet_sandbox', _('Use Sandbox/Test Environment'), _('Use Sandbox/Test Environment'), GOOGLE_WALLET_SANDBOX, [false, true], ['Live Environment', 'Sandbox Test Environment']);
         $settings->add_text_setting(_('Billing'), _('Google Wallet'), 'google_wallet_seller_id', _('Live Merchant ID'), _('Live Merchant ID'), (defined('GOOGLE_WALLET_SELLER_ID') ? GOOGLE_WALLET_SELLER_ID : ''));
-        $settings->add_text_setting(_('Billing'), _('Google Wallet'), 'google_wallet_seller_secret', _('Live Merchant Key'), _('Live Merchant Key'), (defined('GOOGLE_WALLET_SELLER_SECRET') ? GOOGLE_WALLET_SELLER_SECRET : ''));
+        $settings->add_password_setting(_('Billing'), _('Google Wallet'), 'google_wallet_seller_secret', _('Live Merchant Key'), _('Live Merchant Key'), (defined('GOOGLE_WALLET_SELLER_SECRET') ? GOOGLE_WALLET_SELLER_SECRET : ''));
         $settings->add_text_setting(_('Billing'), _('Google Wallet'), 'google_wallet_sandbox_seller_id', _('Sandbox Merchant ID'), _('Sandbox Merchant ID'), (defined('GOOGLE_WALLET_SANDBOX_SELLER_ID') ? GOOGLE_WALLET_SANDBOX_SELLER_ID : ''));
-        $settings->add_text_setting(_('Billing'), _('Google Wallet'), 'google_wallet_sandbox_seller_secret', _('Sandbox Merchant Key'), _('Sandbox Merchant Key'), (defined('GOOGLE_WALLET_SANDBOX_SELLER_SECRET') ? GOOGLE_WALLET_SANDBOX_SELLER_SECRET : ''));
+        $settings->add_password_setting(_('Billing'), _('Google Wallet'), 'google_wallet_sandbox_seller_secret', _('Sandbox Merchant Key'), _('Sandbox Merchant Key'), (defined('GOOGLE_WALLET_SANDBOX_SELLER_SECRET') ? GOOGLE_WALLET_SANDBOX_SELLER_SECRET : ''));
     }
 }
