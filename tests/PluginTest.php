@@ -271,6 +271,66 @@ class PluginTest extends TestCase
     }
 
     /**
+     * Test that every source getRequirements() registers is a file that exists.
+     *
+     * function_requirements() require()s the registered source the first time the
+     * named function or class is asked for, so a registration naming a file that
+     * is not on disk is a fatal waiting for its first caller - it cannot be caught
+     * by anything that only inspects the method signature. This drives the real
+     * handler with a stub loader, collects every (function, source) pair it
+     * registers, and resolves each source to an absolute path before asserting the
+     * file is there. Sources are written relative to core's include/ but the ones
+     * a plugin registers for itself climb back out through vendor/ into this very
+     * package, so they resolve against the package root in a standalone checkout.
+     *
+     * getRequirements() registers nothing today, so the loop body does not run and
+     * the test passes on the assertion below it. That is the correct result for an
+     * empty table: the check exists to hold the line if a registration is ever
+     * added back.
+     */
+    public function testEveryRegisteredRequirementSourceResolvesToAnExistingFile(): void
+    {
+        $loader = new class () {
+            /** @var array<int, array{0: string, 1: string}> */
+            public array $registered = [];
+
+            public function add_requirement($function, $source, $methods = false): void
+            {
+                $this->registered[] = [(string) $function, (string) $source];
+            }
+        };
+
+        Plugin::getRequirements(new GenericEvent($loader));
+
+        $packageDir = dirname(__DIR__);
+        $selfPrefix = '/vendor/detain/myadmin-googlewallet-payments/';
+        $coreInclude = dirname($packageDir, 3).'/include';
+
+        foreach ($loader->registered as [$function, $source]) {
+            $this->assertNotSame('', trim($source), "Requirement '{$function}' registers an empty source");
+
+            $position = strpos($source, $selfPrefix);
+            if ($position !== false) {
+                $resolved = $packageDir.'/'.ltrim(substr($source, $position + strlen($selfPrefix)), '/');
+            } else {
+                $this->assertDirectoryExists(
+                    $coreInclude,
+                    "Requirement '{$function}' registers '{$source}', which points outside this package; "
+                    ."resolving it needs a core checkout at {$coreInclude}"
+                );
+                $resolved = $coreInclude.'/'.ltrim($source, '/');
+            }
+
+            $this->assertFileExists(
+                $resolved,
+                "getRequirements() registers '{$function}' => '{$source}' but that file does not exist (resolved to {$resolved})"
+            );
+        }
+
+        $this->assertIsArray($loader->registered, 'getRequirements() must not corrupt the loader requirement table');
+    }
+
+    /**
      * Test that the constructor takes no parameters.
      */
     public function testConstructorHasNoParameters(): void

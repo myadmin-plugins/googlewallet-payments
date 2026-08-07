@@ -56,10 +56,6 @@ class Plugin
          * @var \MyAdmin\Plugins\Loader $this->loader
          */
         $loader = $event->getSubject();
-        $loader->add_requirement('class.Googlewallet', '/../vendor/detain/myadmin-googlewallet-payments/src/Googlewallet.php');
-        $loader->add_requirement('deactivate_kcare', '/../vendor/detain/myadmin-googlewallet-payments/src/abuse.inc.php');
-        $loader->add_requirement('deactivate_abuse', '/../vendor/detain/myadmin-googlewallet-payments/src/abuse.inc.php');
-        $loader->add_requirement('get_abuse_licenses', '/../vendor/detain/myadmin-googlewallet-payments/src/abuse.inc.php');
     }
 
     /**
