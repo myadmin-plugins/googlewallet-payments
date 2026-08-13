@@ -1,6 +1,6 @@
 ---
 name: plugin-hook
-description: Adds a new Symfony EventDispatcher hook to src/Plugin.php. Use when the user says 'add hook', 'register event', 'listen to event', or needs to extend getHooks(). Adds the event key to getHooks() return array and creates the corresponding static handler method with a GenericEvent $event parameter. Do NOT use for modifying existing hooks or editing commented-out hooks. NOTE: for a plugin's contract/behavioral tests (tests/ContractTest.php, the shared harness, composer myadmin:scaffold-tests) use the plugin-contract-tests skill instead — this skill's reflection-only guidance predates that harness.
+description: Adds a new Symfony EventDispatcher hook to src/Plugin.php. Use when the user says 'add hook', 'register event', 'listen to event', or needs to extend getHooks(). Adds the event key to getHooks() return array and creates the corresponding static handler method with a GenericEvent $event parameter. Do NOT use for modifying existing hooks or editing commented-out hooks. For a plugin's contract or behavioral tests (tests/ContractTest.php, the shared harness, composer myadmin:scaffold-tests) use the plugin-contract-tests skill instead — this skill's reflection-only guidance predates that harness.
 ---
 <!-- myadmin-contract-harness-notice -->
 > ### ⚠️ Read this before the rest of the file
